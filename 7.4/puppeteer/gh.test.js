@@ -3,10 +3,12 @@ let page;
 afterEach(() => {
   page.close();
 });
+beforeEach(async () => {
+  page = await browser.newPage();
+});
 
 describe("Github page tests", () => {
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/team");
   });
   test("The h1 header content'", async () => {
@@ -35,7 +37,6 @@ describe("Github page tests", () => {
 });
 describe("Github page tests 2", () => {
   beforeEach(async () => {
-    page = await browser.newPage();
     await page.goto("https://github.com/enterprise");
   });
   test("The h1 header content'", async () => {
