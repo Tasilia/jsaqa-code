@@ -4,7 +4,10 @@
   "description": "first tests with Cypress",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "headedChrome": "npx cypress run --browser chrome --headed",
+    "headlessChrome": "npx cypress run --browser chrome",
+    "headedElectron": "npx cypress run --browser electron --headed",
+    "headlessElectron": "npx cypress run --browser electron"
   },
   "author": "OM",
   "license": "ISC",

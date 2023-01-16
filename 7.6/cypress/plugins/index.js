@@ -17,6 +17,13 @@
  */
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
-}
+  if (config.env.version === "mac") {
+    config.viewportHeight = 1800;
+    config.viewportWidth = 2880;
+  }
+  if (config.env.version === "iphone") {
+    config.viewportHeight = 664;
+    config.viewportWidth = 390;
+  }
+  return config;
+};

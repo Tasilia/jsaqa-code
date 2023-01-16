@@ -30,3 +30,28 @@ Cypress.Commands.add("login", (login, password) => {
   cy.get("#pass").type(password);
   cy.contains("Submit").click();
 });
+
+Cypress.Commands.add("checkValidationMessage", (field) => {
+  cy.get(field)
+    .then(($el) => $el[0].checkValidity())
+    .should("be.false");
+  cy.get(field)
+    .then(($el) => $el[0].validationMessage)
+    .should("contain", "Заполните это поле.");
+});
+
+Cypress.Commands.add("addNewBook", (email, password, title, author) => {
+  cy.login(email, password);
+  cy.wait(2000);
+  cy.get(".btn > a").click();
+  cy.get("button").contains("Add new").click();
+  cy.get("#title").type(title);
+  cy.get("#authors").type(author);
+});
+
+Cypress.Commands.add("checkBookAndDelete", (title, author) => {
+  cy.visit("/favorites");
+  cy.get(".card-title").should("have.text", title);
+  cy.get(".card-text").should("have.text", author);
+  cy.get("button").contains("Delete from favorite").click();
+});
